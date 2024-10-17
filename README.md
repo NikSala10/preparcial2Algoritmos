@@ -95,3 +95,26 @@ class TaskList extends HTMLElement {
 
 customElements.define('task-list', TaskList);
 export default TaskList;
+
+//CON FETCH
+export const getCharacters = async(payload: any) =>  {
+    const data = await fetchCharacters();
+    return  {
+        action : AuthenticatorAssertionResponse.GETCHARACTERS,
+        payload: data,
+    }
+}
+
+//PARA USARLO
+import { addTaskItemWithFetch } from '../actions/taskActions';
+
+const handleAddTask = () => {
+    const newTask = {
+        title: 'Nueva tarea',
+        description: 'Descripción de la nueva tarea',
+        state: 'pending'
+    };
+
+    // Se llama a la acción con el dispatch
+    dispatch(addTaskItemWithFetch(newTask));
+};
